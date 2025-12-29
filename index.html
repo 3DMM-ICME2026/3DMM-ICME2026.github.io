@@ -1,632 +1,734 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>3DMM</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The 5th International Workshop on 3D Multimedia Analytics, Search and Generation (3DMM) at ICME 2026.">
+    <title>3DMM 2026 - Magazine Edition</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <!-- Google Fonts: Playfair Display (Serif) & Lato (Sans-serif) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text-main: #222222;
+            --text-light: #555555;
+            --accent: #800020; /* Deep Burgundy */
+            --border: #e0e0e0;
+        }
 
- 
-    <link rel="icon" type="image/x-ico" href="imgs/logo.png" />
-    
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-main);
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
 
-    <link href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap" rel="stylesheet">
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: #111;
+            margin-top: 0;
+        }
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        a { color: var(--text-main); text-decoration: none; border-bottom: 1px solid var(--accent); transition: all 0.2s; }
+        a:hover { background: var(--accent); color: #fff; }
 
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
 
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+        /* Top Bar */
+        .top-bar {
+            border-bottom: 4px solid #111;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .date-display {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
 
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+        .issue-no {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
 
-    <link rel="stylesheet" href="css/aos.css">
-    <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+        /* Header / Hero */
+        header {
+            text-align: center;
+            padding: 60px 0 40px;
+            border-bottom: 1px solid var(--border);
+        }
 
-    <link rel="stylesheet" href="css/style.css">
+        h1.main-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
 
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
 
+        .conf-tag {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 5px 15px;
+            border: 1px solid #111;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
 
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        /* Nav */
+        nav {
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            z-index: 100;
+        }
 
-        ga('create', 'UA-88572407-1', 'auto');
-        ga('send', 'pageview');
-    </script>
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links a {
+            border-bottom: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .nav-links a:hover { background: none; color: var(--accent); }
+
+        /* Magazine Layout Grid */
+        .mag-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            border-bottom: 2px solid #111;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Article Styling */
+        .lead-paragraph {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .drop-cap::first-letter {
+            float: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 0.8;
+            padding-right: 10px;
+            padding-top: 4px;
+            color: var(--accent);
+        }
+
+        /* Sidebar Items */
+        .sidebar-item {
+            margin-bottom: 40px;
+            background: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #eee;
+        }
+
+        .sidebar-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        /* Topics List */
+        .topics-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .topics-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .topics-list li h4 { margin: 0 0 5px; font-size: 1.1rem; }
+        .topics-list li p { margin: 0; font-size: 0.9rem; color: #666; }
+
+        /* Dates Table */
+        .dates-table { width: 100%; font-size: 0.9rem; }
+        .dates-table td { padding: 10px 0; border-bottom: 1px dotted #ccc; }
+        .dates-table td:last-child { text-align: right; font-weight: bold; color: var(--accent); }
+
+        /* Organizers Layout (Left Image + Right Info) */
+        .organizers-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .org-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .org-item:last-child {
+            border-bottom: none;
+        }
+
+        .org-img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+
+        .org-info {
+            flex: 1;
+        }
+
+        .org-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--accent);
+        }
+
+        .org-affiliation {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .org-email {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .org-bio {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            .mag-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            h1.main-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .org-item {
+                flex-direction: column;
+                gap: 20px;
+                padding-bottom: 30px;
+                margin-bottom: 30px;
+            }
+
+            .org-img {
+                width: 100%;
+                height: auto;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 0;
+            }
+
+            .issue-no,
+            .date-display {
+                font-size: 0.9rem;
+            }
+
+            header {
+                padding: 40px 0 30px;
+            }
+
+            h1.main-title {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .conf-tag {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+                margin-top: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 0.7rem;
+            }
+
+            .lead-paragraph {
+                font-size: 1.05rem;
+            }
+
+            .drop-cap::first-letter {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+                padding-bottom: 8px;
+                margin-bottom: 20px;
+            }
+
+            .sidebar-item {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .sidebar-title {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+
+            .topics-list li {
+                padding: 12px 0;
+            }
+
+            .topics-list li h4 {
+                font-size: 0.95rem;
+            }
+
+            .topics-list li p {
+                font-size: 0.85rem;
+            }
+
+            .dates-table {
+                font-size: 0.8rem;
+            }
+
+            .dates-table td {
+                padding: 8px 0;
+            }
+
+            .org-item {
+                margin-bottom: 25px;
+                padding-bottom: 25px;
+            }
+
+            .org-img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .org-name {
+                font-size: 1.2rem;
+                margin-bottom: 3px;
+            }
+
+            .org-affiliation {
+                font-size: 0.85rem;
+                margin-bottom: 3px;
+            }
+
+            .org-email {
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+
+            .org-bio {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            footer {
+                padding: 30px 0;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            h1.main-title {
+                font-size: 1.5rem;
+                line-height: 1.2;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .conf-tag {
+                font-size: 0.65rem;
+                padding: 3px 8px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a {
+                font-size: 0.6rem;
+                letter-spacing: 0;
+            }
+
+            header {
+                padding: 30px 0 20px;
+            }
+
+            .mag-grid {
+                gap: 30px;
+                margin-top: 40px;
+                margin-bottom: 40px;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .lead-paragraph {
+                font-size: 0.95rem;
+            }
+
+            .drop-cap::first-letter {
+                font-size: 2.5rem;
+            }
+
+            .sidebar-item {
+                padding: 15px;
+            }
+
+            .sidebar-title {
+                font-size: 1rem;
+            }
+
+            .topics-list li {
+                padding: 10px 0;
+            }
+
+            .topics-list li h4 {
+                font-size: 0.9rem;
+            }
+
+            .topics-list li p {
+                font-size: 0.8rem;
+            }
+
+            .org-item {
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+            }
+
+            .org-img {
+                max-width: 100%;
+            }
+
+            .org-name {
+                font-size: 1.1rem;
+            }
+
+            .org-affiliation {
+                font-size: 0.8rem;
+            }
+
+            .org-email {
+                font-size: 0.75rem;
+            }
+
+            .org-bio {
+                font-size: 0.85rem;
+            }
+
+            .dates-table td {
+                padding: 6px 0;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 </head>
+<body>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
-
-
-<div class="site-wrap">
-
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-
-            <div class="site-mobile-menu-close mt-3">
-                <span class="icon-close2 js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
+<div class="container">
+    <div class="top-bar">
+        <div class="issue-no">Vol. 05 &mdash; July 2026</div>
+        <div class="date-display">International Workshop Series</div>
     </div>
-
-<!---------------------------导航栏------------------------------->
-    <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner" > 
-
-
-            <div class="d-flex align-items-center">
-             
-
-                <div class="mr-auto">
-
-               
-                    <nav class="site-navigation position-relative text-right" role="navigation">
-                     <a href="http://iccv2021.thecvf.com/"> <img class='iccv' src="imgs/icme.png" width=190px height=47px style="margin-top:-1px;"></a>
-
-               
-
-                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                            <li>
-                           
-                                <a href="index.html"><img src="imgs/logo.png" width=190px height=47px style="margin-left: 200px; margin-top: -3.5px; position: sticky;"></a>
-                            </li>
-                            <li>
-                                
-                                <a href="index.html" class="nav-link text-left" style="font-size:15px; font-family:Georgia, serif;">Home</a>
-                            </li>
-                            
-                            <li>
-                                <a href="index.html#call for papers" class="nav-link text-left" style="font-size:15px; font-family:Georgia, serif">Call for papers</a>
-                            </li>
-
-                            <li>
-                                <a href="index.html#dates" class="nav-link text-left" style="font-size:15px; font-family:Georgia, serif">important dates</a>
-                            </li>
-
-                            <li>
-                                <a href="index.html#invited speakers" class="nav-link text-left" style="font-size:15px; font-family:Georgia, serif">invited speakers</a>
-                            </li>
-
-
-
-                            <li>
-                                <a href="index.html#organizers" class="nav-link text-left" style="font-size:15px; font-family:Georgia, serif">organizers</a>
-                            </li>
-
-
-                            </li>
-                        </ul>
-                    </nav>
-
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
 </div>
 
-<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url('imgs/background.png');" 
-
-
-     data-stellar-background-ratio="0.5">
+<header>
     <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-10 text-center" data-aos="fade-up">
+        <img src="image/logo.png" alt="3DMM Logo" style="max-width: 280px; height: auto; margin-bottom: 30px;">
+        <h1 class="main-title">3D Multimedia <br><span style="color: var(--accent);">Analytics, Search</span> <br>& Generation</h1>
+        <div class="subtitle">The 5th International Workshop</div>
+        <div style="margin-top: 20px;">
+            <img src="image/ICME.png" alt="ICME 2026 Logo" style="height: 40px; width: auto;">
+        </div>
+        <div class="conf-tag">5 July – 9 July 2026 &mdash; Bangkok, Thailand</div>
+    </div>
+</header>
 
+<nav>
+    <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#topics">Call for Papers</a></li>
+        <li><a href="#dates">Agenda</a></li>
+        <li><a href="#history">Legacy</a></li>
+        <li><a href="#people">People</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="mag-grid">
+        <!-- Main Content Column -->
+        <div class="main-col">
+            <section id="overview">
+                <h2 class="section-title">Overview</h2>
+                <div class="lead-paragraph drop-cap">
+                    In the embodied AI era, ubiquitous sensors generate massive 3D multimodal data—LiDAR clouds, RGB-D video, dynamic meshes, and neural fields. Integrating text, audio, and images with 3D geometry empowers agents to physically interact with the world.
+                </div>
+                <p>Logistics robots grasp objects using RGB recognition and point cloud pose estimation; assistants fuse language commands with scene geometry to execute complex tasks. Advancing from passive understanding to active perception, 3D multimedia analytics now drives autonomous systems, dexterous manipulation, and collaborative manufacturing.</p>
+                <p>Researchers have advanced 3D multimedia analytics across autonomous driving, robotic navigation, smart manufacturing, and logistics, where agents grasp, move, and inspect objects using 3D data. Beyond passive analysis, embodied systems demand active perception and interaction, pushing new challenges in sim-to-real transfer, affordance learning, and multimodal decision-making.</p>
+                <p style="font-weight: 600; margin-bottom: 15px;">This workshop aims to:</p>
+                <ol style="margin-top: 0; padding-left: 20px;">
+                    <li style="margin-bottom: 10px;">Convene state-of-the-art research in 3D multimedia analysis</li>
+                    <li style="margin-bottom: 10px;">Address emerging challenges in multimodal 3D perception</li>
+                    <li style="margin-bottom: 10px;">Establish benchmarks for both classic and embodied 3D tasks</li>
+                    <li style="margin-bottom: 10px;">Showcase innovations in representation learning and interactive systems</li>
+                    <li style="margin-bottom: 10px;">Demonstrate real-world 3D multimedia applications</li>
+                    <li style="margin-bottom: 10px;">Introduce new datasets spanning static scenes to dynamic interactions</li>
+                </ol>
                 <br>
-            
-                <h1 style="font-size:46px">3D Multimedia</h1>
-                <h1 style="font-size:46px">Analytics, Search and Generation</h1>
+                <a href="#" style="background: #111; color: #fff; padding: 15px 30px; display: inline-block; font-family: 'Playfair Display', serif; font-style: italic;">Submit Paper (Link TBD)</a>
+            </section>
 
-                <br><br><br>
-                <h4> In Conjunction with ICME 2025</h4>
-                <h4> June 30 - July 4, Nantes, France</h4>
-            </div>
+            <section id="topics" style="margin-top: 60px;">
+                <h2 class="section-title">Call for Papers</h2>
+                <p>We solicit original research and survey papers in (but not limited to) the following topics:</p>
+                <ul class="topics-list">
+                    <li><h4>Generative Models</h4><p>Generative Models for 3D Multimedia and 3D Multimedia Synthesis</p></li>
+                    <li><h4>Real-world Data</h4><p>Generating 3D Multimedia from Real-world Data</p></li>
+                    <li><h4>Multimodal Analysis</h4><p>3D Multimodal Analysis and Description</p></li>
+                    <li><h4>VR / AR</h4><p>Multimedia Virtual/Augmented Reality</p></li>
+                    <li><h4>Search & Rec</h4><p>3D Multimedia Search and Recommendation</p></li>
+                    <li><h4>3D Art & Culture</h4><p>3D Multimedia Art, Entertainment and Culture</p></li>
+                    <li><h4>Mobile 3D</h4><p>Mobile 3D Multimedia</p></li>
+                    <li><h4>Shape & Reconstruction</h4><p>3D Shape Estimation and Reconstruction</p></li>
+                    <li><h4>Scene Understanding</h4><p>3D Scene Understanding</p></li>
+                    <li><h4>Segmentation</h4><p>3D Semantic Segmentation</p></li>
+                    <li><h4>Detection & Tracking</h4><p>3D Object Detection and Tracking</p></li>
+                    <li><h4>Representation Learning</h4><p>High-level Representation of 3D Multimedia Data</p></li>
+                    <li><h4>Robotics</h4><p>3D Multimedia Data Understanding for Robotics</p></li>
+                    <li><h4>Embodied Interaction</h4><p>Embodied 3D Scene Interaction and Manipulation</p></li>
+                </ul>
+            </section>
         </div>
+
+        <!-- Sidebar Column -->
+        <aside>
+            <div class="sidebar-item" id="dates">
+                <h3 class="sidebar-title">Important Dates</h3>
+                <table class="dates-table">
+                    <tr><td>Paper Submission</td><td>TBD</td></tr>
+                    <tr><td>Notification</td><td>TBD</td></tr>
+                    <tr><td>Camera-Ready</td><td>TBD</td></tr>
+                    <tr><td>Workshop Date</td><td>July 2026</td></tr>
+                </table>
+            </div>
+
+            <div class="sidebar-item" id="history">
+                <h3 class="sidebar-title">Workshop History</h3>
+                <p><strong><a href="https://3dmm-icme2025.github.io/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">4th Workshop (2025)</a></strong><br>Nantes, France<br>13 submissions, 8 accepted<br>~30 participants</p>
+                <hr style="border:0; border-top:1px solid #ccc; margin: 15px 0;">
+                <p><strong><a href="https://3dmm-icme2024.github.io/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">3rd Workshop (2024)</a></strong><br>July 2024<br>10 submissions, 6 accepted<br>~40 participants</p>
+                <hr style="border:0; border-top:1px solid #ccc; margin: 15px 0;">
+                <p><strong><a href="https://3dmm-icme2023.github.io/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">2nd Workshop (2023)</a></strong><br>July 2023<br>7 submissions, 6 accepted<br>~50 participants</p>
+                <hr style="border:0; border-top:1px solid #ccc; margin: 15px 0;">
+                <p><strong><a href="https://3dmm-icme2022.github.io/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">1st Workshop (2022)</a></strong><br>July 2022<br>17 submissions, 8 accepted<br>~40 participants</p>
+            </div>
+        </aside>
     </div>
-</div>
 
-
-
-<div class="site-section">
-    <div class="container">
-
-<!------------------------------ news  ------------------------------------------>
-
-
-<div class="col-lg-12" id="news" style="padding-top:80px;margin-top:-150px;">
-        <h4><i>News</i> !</h4>
-        <ul>           
-            <li>
-                <p style="height: 10px">
-                    <strong style="font-size:20px;color:red;font-family:'Times New Roman';"> Jan 10, 2025:&nbsp;&thinsp;&thinsp;</strong>The website is coming. Call for papers.
-                </p>
-            </li>                             
-        </ul>
-</div>
-<br><br><br><br>
-
-<!------------------------  overview  ----------------------->
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h2>Overview</h2>
-                    <br>
-                    <h4 style="font-size: 21px;"><i></i></h4>
-                </div>
-                <div class="trend-entry d-flex">
-                    <div class="trend-contents">
-                        <p>
-
-                            &emsp;&emsp;  Today, ubiquitous multimedia sensors and large-scale computing infrastructures are producing at a rapid velocity of <font face='Times New Roman'>3D</font> multi-modality data, such as <font face='Times New Roman'>3D</font> point cloud acquired with LIDAR sensors, RGB-D videos recorded by Kinect cameras, meshes of varying topology, and volumetric data. <font face='Times New Roman'>3D</font> multimedia combines different content forms such as text, audio, images, and video with <font face='Times New Roman'>3D</font> information, which can perceive the world better since the real world is 3-dimensional instead of 2-dimensional. For example, the robots can manipulate objects successfully by recognizing the object via RGB frames and perceiving the object size via point cloud. Researchers have strived to push the limits of <font face='Times New Roman'>3D</font> multimedia search and generation in various applications, such as autonomous driving, robotic visual navigation, smart industrial manufacturing, logistics distribution, and logistics picking. The <font face='Times New Roman'>3D</font> multimedia (e.g., the videos and point cloud) can also help the agents to grasp, move and place the packages automatically in logistics picking systems.
-Therefore, <font face='Times New Roman'>3D</font> multimedia analytics is one of the fundamental problems in multimedia understanding. Different from <font face='Times New Roman'>3D</font> vision, <font face='Times New Roman'>3D</font> multimedia analytics mainly concentrate on fusing the <font face='Times New Roman'>3D</font> content with other media. It is a very challenging problem that involves multiple tasks such as human <font face='Times New Roman'>3D</font> mesh recovery and analysis, <font face='Times New Roman'>3D</font> shapes and scenes generation from real-world data, <font face='Times New Roman'>3D</font> virtual talking head, <font face='Times New Roman'>3D</font> multimedia classification and retrieval, <font face='Times New Roman'>3D</font> semantic segmentation, <font face='Times New Roman'>3D</font> object detection and tracking, <font face='Times New Roman'>3D</font> multimedia scene understanding, and so on. Therefore, the purpose of this workshop is to: 1) bring together the state-of-the-art research on <font face='Times New Roman'>3D</font> multimedia analysis; 2) call for a coordinated effort to understand the opportunities and challenges emerging in <font face='Times New Roman'>3D</font> multimedia analysis; 3) identify key tasks and evaluate the state-of-the-art methods; 4) showcase innovative methodologies and ideas; 5) introduce interesting real-world <font face='Times New Roman'>3D</font> multimedia analysis systems or applications; and 6) propose new real-world or simulated datasets and discuss future directions. We solicit original contributions in all fields of <font face='Times New Roman'>3D</font> multimedia analysis that explore the multi-modality data to generate the strong <font face='Times New Roman'>3D</font> data representation. We believe this workshop will offer a timely collection of research updates to benefit researchers and practitioners in the broad multimedia communities.
-                            <br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-<!------------------------  Call for papers  --------------------->
-<div class="col-lg-12" id="call for papers" style="padding-top:80px;margin-top:-80px;">
-        <div class="section-title">
-
-            <br><br><br>
-            <h2>Call for papers</h2>
-        </div>
-
-        <div class="trend-entry d-flex">
-                <div class="trend-contents">
-                    <p style="margin: auto;">
-                        &emsp; &emsp;We invite submissions for ICME <font face='Times New Roman'>2025</font> Workshop, <font face='Times New Roman'>3D</font> Multimedia Analytics, Search and Generation (<font face="Times New Roman">3DMM2025</font>), which brings researchers together to discuss robust, interpretable, and responsible technologies for <font face='Times New Roman'>3D</font> multimedia analysis. We solicit original research and survey papers that must be no longer than <font face="Times New Roman" size=5px>6</font> pages (including all text, figures, and references). Each submitted paper will be peer-reviewed by at least three reviewers. All accepted papers will be presented as either oral or poster presentations, with the best paper award. Papers that violate anonymity, do not use the ICME submission template will be rejected without review. By submitting a manuscript to this workshop, the authors acknowledge that no paper substantially similar in content has been submitted to another workshop or conference during the review period. Authors should prepare their manuscript according to the Guide for Authors of ICME. For detailed instructions, see <a href="https://2025.ieeeicme.org/author-information-and-submission-instructions/" style="font-family: 'Times New Roman', Times, serif; font-size:21px;">here</a>. Submission address is <a href="https://cmt3.research.microsoft.com/ICMEW2025/" style="font-family: 'Times New Roman', Times, serif; font-size:21px;">here</a>.
-                        <br>
-                        &emsp;&emsp;The scope of this workshop includes, but is not limited to, the following topics:
-                    </p>
-                <ul class="set_ul" style="margin-bottom: 0px; margin-left:20px; display: inline-block;">
-                        <li>
-                            Generative Models for <font face='Times New Roman'>3D</font> Multimedia and <font face='Times New Roman'>3D</font> Multimedia Synthesis
-                        </li>
-                        <li>
-                            Generating <font face='Times New Roman'>3D</font> Multimedia from Real-world Data
-                        </li>
-                        <li>
-                            <font face='Times New Roman'>3D</font> Multimodal Analysis and Description
-                        </li>
-                        <li>
-                            Multimedia Virtual/Augmented Reality
-                        </li>
-                        <li>
-                            <font face='Times New Roman'>3D</font> Multimedia Systems
-                        </li>
-                        
-                        <li>
-                            <font face='Times New Roman'>3D</font> Multimedia Search and Recommendation
-                        </li>
-                       
-                        <li>
-                            Mobile <font face='Times New Roman'>3D</font> Multimedia
-                        </li>
-                        <li>
-                            <font face='Times New Roman'>3D</font> Shape Estimation and Reconstruction
-                        </li>
-                        <li>
-                            <font face='Times New Roman'>3D</font> Scene and Object Understanding
-                        </li>                        
-                        
-                        <li>
-                            High-level Representation of <font face='Times New Roman'>3D</font> Multimedia Data
-                        </li>
-                        <li>
-                            <font face='Times New Roman'>3D</font> Multimedia Application in Industry
-                        </li>                                              
-                    </ul> 
-                    <p style="margin: auto;">
-                        &emsp;&emsp;<strong>Fast Review for Rejected Regular Submissions of ICME 2025</strong>
-                        <br>
-                        &emsp;&emsp;We set up a Fast Review mechanism for the regular submissions rejected by the ICME main conference. We strongly encourage the rejected papers to be submitted to this workshop. In order to submit through Fast Review, authors must write a front letter (1 page) to clarify the revision of the paper and attach all previous reviews. All the papers submitted through Fast Review will be directly reviewed by meta-reviewers to make the decisions.
-                    </p>                                      
+    <section id="people" style="margin-bottom: 80px;">
+        <h2 class="section-title" style="text-align: center; border-bottom: none;">Organizing Committee</h2>
+        <div style="width: 50px; height: 4px; background: var(--accent); margin: -20px auto 40px;"></div>
+        <div class="organizers-list">
+            <!-- Organizer 1: Shan An -->
+            <div class="org-item">
+                <img src="image/Shan An.png" alt="Shan An" class="org-img">
+                <div class="org-info">
+                    <h3 class="org-name"><a href="https://anshan.ai/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">Shan An</a></h3>
+                    <div class="org-affiliation">Tianjin University, Tianjin, China</div>
+                    <div class="org-email">Email: anshan@tju.edu.cn</div>
+                    <p class="org-bio">Dr. Shan An (FIET) received a Bachelor's degree in Automation Engineering from Tianjin University, China in 2007 and a Master's degree in Control Science from Shandong University, China, in 2010. He received the Ph.D. degree in computer science from Beihang University in 2022. He is a tenured associate professor of Tianjin University. He is an IET Fellow and BCS Fellow. He has authored or co-authored more than 60 papers in journals and conferences. He has more than 30 patents granted in China and 8 patents granted in the United States, Japan and Russia. His research interests include image segmentation and retrieval, visual SLAM in robotics and AR.</p>
                 </div>
             </div>
-    </div>
 
-    
-
-
-
-<!------------------------------ Invited speakers  ------------------------------------------>
-
-<div class="col-lg-12" id="invited speakers" style="padding-top:80px;margin-top:-80px;">
-    <div class="section-title">
-
-        <br><br><br>
-        <h2>Invited speakers</h2>
-        <br><br>
-     
-        <div align="left">
-            <div class="instructor_fina" style="float: left; display: inline; margin-top: 1px;">
-                <a href="https://faculty.bjtu.edu.cn/8497/">
-                    <div class="instructorphoto"><img src="imgs/JinYi.png"></div>
-                </a>
-                <div style="font-family:Helvetica, sans-serif; font-size: 17px;display: inline-block;">Prof.</div>
-                <a href="https://faculty.bjtu.edu.cn/8497/">
-                    <div style="font-size: 17px;display: inline-block;">&thinsp;Yi Jin</div>
-                </a>
-                <div style="font-family:Helvetica, sans-serif; font-size: 17px">Beijing Jiaotong University, China</div>
-            </div>  
-
-            <div style="font-family:Times New Roman, sans-serif; font-size: 20px; display: inline-block; width: 78%;text-align: justify;">
-                <strong>Title:</strong> Research on Key Techniques of Task-Oriented Point Cloud Sampling Based on Deep Learning
-               <br>
-                <strong>Abstract:</strong> With the rapid advancement of 3D perception technologies and exponential growth of data scales, sampling techniques have become fundamental preprocessing operations in computer vision. As a critical component of 3D data processing, point cloud sampling not only serves the dual purposes of dimensionality reduction and quality enhancement, but more importantly determines the performance of subsequent perception tasks. This presentation systematically elaborates recent advances in integrating task-oriented sampling with deep learning. Following the proposed "point cloud representation - adaptive sampling mechanism - task performance optimization" framework, this work innovatively establishes a bio-inspired task-oriented sampling theory: Through developing multi-level deep network architectures, key technical bottlenecks have been overcome in inter-point relationship modeling, local feature extraction, regional similarity discrimination, and cross-region correlation mining, achieving remarkable improvements in both sampling quality and task generalization. Finally, the discussion will focus on how multimodal fusion technologies are reshaping the design paradigms and industrial landscapes of next-generation intelligent systems.
-               <br>
-               <strong>Biography:</strong> Yi Jin Professor is currently serves as Assistant Dean at the School of Computer and Information Technology, Beijing Jiaotong University. Yi Jin received a Ph.D. from Beijing Jiaotong University, China, in 2010. Her research interests include semantic understanding of traffic video, image processing, and computer vision. Yi Jin has been honored with multiple prestigious awards, including the Nomination for the IEEE Computer Society Annual Best Paper Award (2022), Silver Medal at the 50th International Exhibition of Inventions Geneva (2025), Gold Medal of the Macao International Innovation and Invention Expo (2024), Second Prize of the Innovation Achievement Award from the China Industry-University-Research Institute Collaboration Association (2023), Second Prize of the Science and Technology Award from the China Institute of Communications (2024). Professor Yi Jin has published over 70 high-quality papers in top-tier journals and conferences, including IEEE TIFS, IEEE TMM, AAAI, and ACM MM. Among these, five are ESI Highly Cited Papers. She has served as the editor-in-chief or co-editor of three academic books and textbooks, and contributed to three national and industry standards. She has led or participated in over 20 research projects at the national and ministerial levels, while securing 1 international patent and 35 Chinese invention patents. Yi Jin serves on the editorial boards of two prominent SCI-indexed journals: Journal of The Franklin Instituteand Journal of Electronic Imaging. She also contributes as a guest editor for several leading international and domestic journals in her field.
-            </div>	
-
-        </div>
-         <!------------------------------ the above is jin yi ------------------------------------------>
-        <br>
-        <br>
-        <br>
-        <br> 
-
-        <!------------------------------ The second speaker info ------------------------------------------>
-        <div align="left">
-            <div class="instructor_fina" style="float: left; display: inline; margin-top: 1px;">
-                <a href="https://wbhu.github.io/">
-                    <div class="instructorphoto"><img src="imgs/HuWenbo.png"></div>
-                </a>
-                <div style="font-family:Helvetica, sans-serif; font-size: 17px;display: inline-block;">Dr.</div>
-                <a href="https://wbhu.github.io/">
-                    <div style="font-size: 17px;display: inline-block;">&thinsp;Wenbo Hu</div>
-                </a>
-                <div style="font-family:Helvetica, sans-serif; font-size: 17px">Tencent ARC Lab, China</div>
-            </div>  
-
-            <div style="font-family:Times New Roman, sans-serif; font-size: 20px; display: inline-block; width: 78%;text-align: justify;">
-                <strong>Title:</strong> GenConstruction: The Mutual Benefit between Content Generation and Reconstruction
-               <br>
-                <strong>Abstract:</strong> Video generation models have demonstrated remarkable content generation capabilities and hold great potential as world simulators. However, due to their fundamental nature of modeling in a 2D space, challenges persist in ensuring 3D rationality and consistency. Meanwhile, 3D foundation models have made significant progress, yet the recovery of accurate and stable 3D information from 2D observations in open-world scenarios remains a formidable task. This study discovers that content generation and reconstruction can mutually benefit each other, facilitating a spiral upward development. Specifically, leveraging the capabilities of generation models can significantly enhance the accuracy and stability of 3D reconstruction for 3D foundation models. Conversely, the structural information provided by 3D foundation models can greatly improve the 3D consistency and controllability of video generation models. In this talk, we will share a series of our exploratory works in this direction and discuss the evolving paths of generation and reconstruction.
-               <br>
-               <strong>Biography:</strong> Wenbo Hu is currently a senior researcher at Tencent ARC Lab, leading an effort to Generative World Model, including 3D from Images/Videos, Novel View Synthesis, and Video Generation. He obtained his Ph.D. degree in Computer Science and Engineering from The Chinese University of Hong Kong (CUHK) in 2022. His work has been selected as Best Paper Finalist in ICCV'2023. He received the CCF Elite Collegiate Award in 2017. He has served as a reviewer for top-tier conferences and journals, including SIGGRAPH, SIGGRAPH Asia, CVPR, ICCV, ECCV, NeurIPS, ICML, EG, TVCG, IJCV, etc.
+            <!-- Organizer 2: Kun Liu -->
+            <div class="org-item">
+                <img src="image/Kun Liu.png" alt="Kun Liu" class="org-img">
+                <div class="org-info">
+                    <h3 class="org-name"><a href="https://scholar.google.com/citations?user=d3KtRO8AAAAJ&hl=en" style="border-bottom: 1px solid var(--accent); color: var(--accent);">Kun Liu</a></h3>
+                    <div class="org-affiliation">JD Explore Academy, Beijing, China</div>
+                    <div class="org-email">Email: liukun167@jd.com</div>
+                    <p class="org-bio">Dr. Kun Liu is a Senior Researcher in JD Explore Academy, China. He received the Ph.D. degree in computer science from the Beijing University of Posts and Telecommunications in 2021. His current research interests include Multimedia Large Language Model (MLLM) and AI Generated Content (AIGC). He has authored or co-authored more than 20 papers in top-tier conferences and journals in computer vision and multimedia. Dr. Liu has won 1st Place in Step Ordering Track of CVPR 2020 YouMakeUp VQA Challenge, 1st Place in General Anomaly Detection Track of ACM MM 2020 CitySCENE Anomaly Detection Challenge, 2nd in Part-level Action Parsing Track of ICCV 2021 DeeperAction Challenge, and 2nd prize in No Interaction Track of SAPIEN Open-Source Manipulation Skill Challenge.</p>
+                </div>
             </div>
-        </div>
-        <!------------------------------ The second speaker info END------------------------------------------>
-        
-        <br>
-        <br>
-        <br>
-        <br> 
-        <!------------------------------ The 3th speaker info ------------------------------------------>
-        <div align="left">
-            <div class="instructor_fina" style="float: left; display: inline; margin-top: 1px;">
-                <a href="https://person.zju.edu.cn/0095152">
-                    <div class="instructorphoto"><img src="imgs/WeiDong.png"></div>
-                </a>
-                <div style="font-family:Helvetica, sans-serif; font-size: 17px;display: inline-block;">Prof.</div>
-                <a href="https://person.zju.edu.cn/0095152">
-                    <div style="font-size: 17px;display: inline-block;">&thinsp;Weidong Geng</div>
-                </a>
-                <div style="font-family:Helvetica, sans-serif; font-size: 17px">Zhejiang University, China</div>
-            </div>  
 
-            <div style="font-family:Times New Roman, sans-serif; font-size: 20px; display: inline-block; width: 78%;text-align: justify;">
-                <strong>Title:</strong> Multi-modal Modelling of Body language for Digital Human
-                <br>
-                <strong>Abstract:</strong> HumanAIGC is the cross-discipline research area of Digital Human and AIGC. This talk will present how to model body language to drive digital human with correlated visual-audio modals, especial on how to choreograph,stylize and personalize gestures and postures for digital human with textual description,  speech and music. The application of AIGC-based Digital Human for TV-program making will also be discussed.
-                <br>
-                <strong>Biography:</strong> WEIDONG GENG, Professor, College of Computer Science & Technology, Zhejiang University, PR China. From 1995 to 2000, he was in Zhejiang University, where his research interests are in CAD/CG, and intelligent systems. He joined Fraunhofer Institute for Media Communication (former GMD.IMK), Germany, as a research scientist in 2000. In 2002, he worked in Multimedia Innovation Center, The Hong Kong Polytechnic University, Hong Kong. Since 2003, he has been working in State Key Laboratory of CAD&CG, Zhejiang University, and his current research focuses on computer aided design, digital human, perceptual user interface, interactive media and AIGC. 
-                
+            <!-- Organizer 3: Xuri Ge -->
+            <div class="org-item">
+                <img src="image/Xuri Ge.png" alt="Xuri Ge" class="org-img">
+                <div class="org-info">
+                    <h3 class="org-name"><a href="https://xurige1995.github.io/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">Xuri Ge</a></h3>
+                    <div class="org-affiliation">Shandong University, Jinan, China</div>
+                    <div class="org-email">Email: xurigexmu@gmail.com</div>
+                    <p class="org-bio">Dr. Xuri Ge is currently a tenure-track assistant professor in the school of artificial intelligence, Shandong University. He earned his PhD at the University of Glasgow (UK) and received M.S. degree from Xiamen University (China). His current research interests include computer vision, multimodal representation learning, and multimodal information retrieval. He has contributed to several leading conferences and journals, including NeurIPS, SIGIR, ACM MM, CIKM, ICME, ACM TIST, and IP&M, etc. He also serves as the PC member and reviewer for top-tier journals like IJCV, TKDE, TMM, TOIS, etc. He has organized the 3DMM Workshop in ICME24 and R^3AG workshop in SIGIR-AP2024.</p>
+                </div>
             </div>
-        </div>
-        <!------------------------------ The 3th speaker info END------------------------------------------>
 
-</div>
-</div>
-
-<!------------------------------ Invited speakers  END ------------------------------------------>
-
-
-
-
-
-<!----------------------------  organizers  ---------------------------------------->
-<div class="col-lg-12" id="organizers" style="padding-top:80px;margin-top:-80px;">
-
-    <!----------------------------  organizer  ---------------------------------------->
-        <div class="section-title">
-            <br><br><br>
-            <h2>Organizers</h2>
-        </div>
-    
-        <div align="center">
-
-                <!--------------  dai peng --------->
-                <div class="instructor_mine">
-                    <a href="https://pdaicode.github.io/">
-                        <div class="instructorphoto"><img src="imgs/DaiPeng1.jpg"></div>
-                        <div style="font-size: 18px">Peng Dai</div>
-                    </a>
-                    <div style="font-family:Helvetica, sans-serif;font-size: 18px">Noah’s Ark Lab, Canada</div>
+            <!-- Organizer 4: Peng Dai -->
+            <div class="org-item">
+                <img src="image/Peng Dai.png" alt="Peng Dai" class="org-img">
+                <div class="org-info">
+                    <h3 class="org-name"><a href="https://pdaicode.github.io/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">Peng Dai</a></h3>
+                    <div class="org-affiliation">Noah's Ark Lab Canada, Toronto, ON, Canada</div>
+                    <div class="org-email">Email: peng.dai.ca@ieee.org</div>
+                    <p class="org-bio">Dr. Peng Dai is currently a Principal Scientist at Noah's Ark Lab, Huawei Canada Inc. He received his B.Eng and M.Eng degrees in Electrical Engineering from Tianjin University in 2006 and 2008, respectively and PhD degree from School of Electrical & Electronic Engineering, Nanyang Technological University. Dr. Dai has authored more than 40 publications in top tier venues including TNNLS, KBS, etc. He has granted more than 20 patents. He has contributed to a number of high impact products. He has served as a program committee member for CVPR, ICCV, WACV, AAAI, and IJCAI. His research interests cover Computer Vision, Data Mining and Signal Processing, with special focus on practical applications.</p>
                 </div>
-
-                <!--------------  an shan  --------->
-                <div class="instructor_mine">
-                    <a href="https://anshan.ai/">
-                        <div class="instructorphoto"><img src="imgs/AnShan.jpg"></div>
-                        <div style="font-size: 18px">Shan An</div>
-                    </a>
-                    <div style="font-family:Helvetica, sans-serif;font-size: 18px">JD Health, China</div>
-                </div>
-              
-                <!--------------  liukun  --------->
-                <div class="instructor">
-                    <a href="https://scholar.google.com/citations?user=NMMB7wcAAAAJ&hl=en">
-                        <div class="instructorphoto">
-                                <img src="imgs/YiboHu.JPG">
-                        </div>
-                        <div style="font-size: 18px">Kun Liu</div>
-                    </a>
-                    <div style="font-family:Helvetica, sans-serif;font-size: 18px">Explore Academy of JD.com, China</div>
-                </div>         
-                
-
-                <!--------------  Ge Xu Ri --------->
-                <div class="instructor">
-                    <a href="https://xurige1995.github.io/">
-                        <div class="instructorphoto">
-                                <img src="imgs/gexuri.png">
-                        </div>
-                        <div style="font-size: 18px">Xuri Ge</div>
-                    </a>
-                    <div style="font-family:Helvetica, sans-serif;font-size: 18px">University of Glasgow, UK</div>
-                </div>
-
-               <!--------------  Guoxin Wang   --------->
-                <div class="instructor">
-                        <div class="instructorphoto">
-                                <img src="imgs/WangGuoXin.jpg">
-                        </div>
-                        <div style="font-size: 18px">Guoxin Wang</div>
-
-                    <div style="font-family:Helvetica, sans-serif;font-size: 18px">Zhejiang University, China</div>
-                </div>
-
-                <!--------------    liuwu  --------->
-                <div class="instructor_mine">
-                    <a href="https://drliuwu.com/">
-                        <div class="instructorphoto"><img src="imgs/JinggenLiu.png"></div>
-                        <div style="font-size: 18px">Wu Liu</div>
-                    </a>
-                    <div style="font-family:Helvetica, sans-serif;font-size: 18px">University of Science and Technology of China, China</div>
-                </div>
-                
-        
-                <!--------------  8 Antonios Gasteratos   --------->
-                <div class="instructor_mine">
-                    <a href="https://robotics.pme.duth.gr/antonis/">
-                        <div class="instructorphoto"><img src="imgs/Antonios.jpg"></div>
-                        <div style="font-size: 18px">Antonios Gasteratos</div>
-                    </a>
-                    <div style="font-family:Helvetica, sans-serif;font-size: 18px">Democritus University of Thrace, Greece</div>
-                </div>
-        </div>
-
-        <!----------------------------  Committe Chairs  ---------------------------------------->
-       
- 
-        
-    </div>
-      
-
-<!------------------------  Workshop Agendas  --------------------->
-
-<div class="col-lg-12" id="agendas" style="padding-top:80px;margin-top:-80px;">
-    <div class="section-title">
-        <br><br><br>
-        <h2>Workshop Agenda</h2>
-    </div>
-    <div class="trend-entry d-flex">
-        <table class="table table-striped" style="border-bottom:2px solid #C4C4C4;border-top:2px solid #C4C4C4;width:70%; line-height: 22px;" align="center">
-            <thead>
-            <!-- <tr style="background-color:#BFEFFF;"> -->
-            <tr>
-                <th scope="col" style="text-align: center;" width="100">Date</th>
-                <th scope="col" style="text-align: center;" width="500"> Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- <tr style="background-color:#8BB1D8;"> -->
-            <tr style="background-color:#B6CEE7;">    
-                <td >9:30-9:40 </td>
-                <td >Opening</td>
-            </tr>
-            <tr>
-                <td >9:40-10:05</td>
-                <td>Keynote 1: Research on Key Techniques of Task-Oriented Point Cloud Sampling Based on Deep Learning</td>
-            </tr>
-            <!--  <td height="25px">9:20-10:00 </td>   class="AutoNewline" -->
-            <tr>
-                <td >10:05-10:30 </td>                
-                <td >Keynote 2: Cross-Modal Vision-and-Language Intelligence: Methodologies and Applications</td>
-            </tr>
-            <tr>
-                <td>10:30-10:55</td>
-                <td>Keynote 3: Muldi-modal Modelling of Body Language for Digital Human</td>
-            </tr>
-            <tr>
-                <td >10:55-12:15</td>
-                <td >8 Oral Presentation (~10min * 8)</td>
-            </tr>   
-            <tr>
-                <td>12:15-12:20</td>
-                <td> Announce the Best Paper Award, Discussion and Closing</td>
-            </tr>            
-            </tbody>
-            
-        </table> 
-    </div>
-</div>
-
-<tr>
-    <td></td>
-    <td></td>
-</tr>
-
-
-
-
-<!------------------------  Oral Orders  --------------------->
-<div class="col-lg-12" id="Oral" style="padding-top:80px;margin-top:-80px;">
-    <div class="section-title">
-        <br><br><br>
-        <h2>Accepted Papers</h2>
-    </div>
-    <div class="trend-entry d-flex">
-        <table class="table table-striped" style="border-bottom:2px solid #C4C4C4;border-top:2px solid #C4C4C4;width:70%; line-height: 18px;" align="center">
-            <thead>
-            <!-- <tr style="background-color:#BFEFFF;"> -->
-            <tr>
-                <th scope="col" style="text-align: center;" width="10%">Oral Order</th> 
-                <th scope="col" style="text-align: center;" width="15%">Date</th> 
-                <th scope="col" style="text-align: center;" width="75%"> Paper Title</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- <tr style="background-color:#8BB1D8;"> -->
-            <tr style="background-color:#B6CEE7;">    
-                <td>1</td>
-                <td>10:55-11:05</td>
-                <td>Keypoint Ensemble For Image Matching</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>11:05-11:15</td>
-                <td>MF-Adapter: Better 3D Foundation Model with Multimodal Fusion Adapter</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>11:15-11:25</td>
-                <td>DHGS: Decoupled Hybrid Gaussian Splatting for Driving Scene</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>11:25-11:35</td>
-                <td>Optimizing Cooperative Multi-Object Tracking using Graph Signal Processing</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>11:35-11:45</td>
-                <td>Guided Model-based LiDAR Super-Resolution for Resource-Efficient Automotive scene Segmentation</td>
-            </tr>           
-            <tr>
-                <td>6</td>
-                <td>11:45-11:55</td>
-                <td>LIVE-FIT: LED-based Immersive Virtual Environment with Fusion, Interaction, and Transmission</td>
-            </tr>  
-            <tr>
-                <td>7</td>
-                <td>11:55-12:05</td>
-                <td>Benchmarking Learnable Mesh and Texture Representations for Immersive Digital Twins</td>
-            </tr>         
-            <tr>
-                <td>8</td>
-                <td>12:05-12:15</td>
-                <td>MVLLaVA: An Intelligent Agent for Unified and Flexible Novel View Synthesis</td>
-            </tr>                  
-            </tbody>            
-        </table> 
-    </div>
-</div>
-<!------------------------  Oral Orders END --------------------->
-
-
-
-
-
-<!------------------------------email-------------------------------->
-<br><br>
-<p style="margin-top:30px;margin-bottom: 60px; text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 24px;">Previous Workshops on 3DMM: <a href="https://3DMM-ICME2022.github.io/" style="font-family: 'Times New Roman', Times, serif; font-size:21px;">3DMM-ICME2022,</a><a href="https://3DMM-ICME2023.github.io/" style="font-family: 'Times New Roman', Times, serif; font-size:21px;"> 3DMM-ICME2023</a> <a href="https://3DMM-ICME2024.github.io/" style="font-family: 'Times New Roman', Times, serif; font-size:21px;">3DMM-ICME2024</a> </p>
-<p style="margin-top:30px;margin-bottom: 60px; text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 24px;">If you have any questions, feel free to contact &lt peng [DOT] dai [DOT] ca [AT] ieee.org</p>
-
-<!-------------------------------   boarder  ---------------------------------------->
-        <div class="col-lg-12">
-            <div style="display:inline-block;width:500px;">
-                <script type="text/javascript" src="//rc.rev
-            olvermaps.com/0/0/7.js?i=2hlmeh3dic1&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;br=19&amp;sx=0"
-                        async="async"></script>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-<!-- END section -->
 
+            <!-- Organizer 5: Wu Liu -->
+            <div class="org-item">
+                <img src="image/Wu Liu.png" alt="Wu Liu" class="org-img">
+                <div class="org-info">
+                    <h3 class="org-name"><a href="https://drliuwu.com/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">Wu Liu</a></h3>
+                    <div class="org-affiliation">University of Science and Technology of China, Hefei, China</div>
+                    <div class="org-email">Email: liuwu@ustc.edu.cn</div>
+                    <p class="org-bio">Dr. Wu Liu is a Professor in University of Science and Technology of China. His current research interests include multimedia analysis and search. He received his Ph.D. degree from the Institute of Computing Technology, Chinese Academy of Science in 2015. He has published more than 80 papers in prestigious conferences and journals in computer vision and multimedia. He received IEEE Trans. on Multimedia 2019 Prize Paper Award, IEEE Multimedia 2018 Best Paper Award, IEEE ICME 2016 Best Student Paper Award, and Chinese Academy of Sciences Outstanding Ph.D. Thesis Award in 2015, etc. Dr. Liu has also served as the Technical Program Co-Chairs of IEEE ICME 2022 and ACM MM Asia 2021, and the Area Chairs of ACM MM from 2019, AAAI from 2021, ACL 2022, CIKM 2021 and etc. Wu Liu also organized the workshops in ACM MM 2022&2021&2020 and IEEE ICCV 2021, three tutorials in ACM MM 2020, IEEE ICME 2019 and ACM MM Asia 2019. Wu Liu also won the ACM China Rising Star Award 2022, MIT TR 35 Asia Asia Pacific 2022, and IEEE ICME 2019 Outstanding Service Award.</p>
+                </div>
+            </div>
 
-<div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="copyright">
-                    <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                        All rights reserved | Powered by <a
-                            href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
+            <!-- Organizer 6: Xinchen Liu -->
+            <div class="org-item">
+                <img src="image/Xinchen Liu.png" alt="Xinchen Liu" class="org-img">
+                <div class="org-info">
+                    <h3 class="org-name">Xinchen Liu</h3>
+                    <div class="org-affiliation">JD Explore Academy, Beijing, China</div>
+                    <div class="org-email">Email: xinchenliu@bupt.cn</div>
+                    <p class="org-bio">Dr. Xinchen Liu is a Senior Researcher in JD Explore Academy, China. His current research interests include Multimedia Large Language Model (MLLM) and AI Generated Content (AIGC). He received his Ph.D. degree in Computer Science from the School of Computer Science, Beijing University of Posts and Telecommunications in 2018. He has published more than 40 papers in top-tier conferences and journals in computer vision and multimedia. He received IEEE Trans. on Multimedia 2019 Prize Paper Award, IEEE ICME 2016 Best Student Paper Award, and Outstanding Doctoral Dissertation Award of China Society of Image and Graphics in 2019. Dr. Liu has also served as the Area Chairs of IEEE ICME 2022&2024, Proceedings Co-Chair of ACM Multimedia Asia 2021. He also organized the workshops in ACM MM 2020-2024.</p>
+                </div>
+            </div>
+
+            <!-- Organizer 7: Chao Zhang -->
+            <div class="org-item">
+                <img src="image/Chao Zhang.png" alt="Chao Zhang" class="org-img">
+                <div class="org-info">
+                    <h3 class="org-name">Chao Zhang</h3>
+                    <div class="org-affiliation">Tianjin University, Tianjin, China</div>
+                    <div class="org-email">Email: zhangchao64@tju.edu.cn</div>
+                    <p class="org-bio">Mr. Chao Zhang received a Master's degree in Computer Science from Xi'an Jiaotong University, China, in 2013. He currently serves as an Associate Research Fellow at Tianjin University. He previously held the roles of Director of Algorithm at JD.com. He possesses over ten years of extensive experience in algorithm development within the industry, having worked at technology companies including Baidu, Tencent, and JD. During his industrial career, his contributions have been recognized with major industry awards, including: the 2016 Baidu Pride - Best Individual, the 2019 Tencent CFO Award, and the 2021 JD Health Technology Star. In the academic domain, he has authored or co-authored more than 10 sci papers. His current research interests focus on robot perception, robot action modeling, and AI for health application.</p>
+                </div>
+            </div>
+
+            <!-- Organizer 8: Antonios Gasteratos -->
+            <div class="org-item">
+                <img src="image/Antonios Gasteratos.png" alt="Antonios Gasteratos" class="org-img">
+                <div class="org-info">
+                    <h3 class="org-name"><a href="https://robotics.pme.duth.gr/antonis/" style="border-bottom: 1px solid var(--accent); color: var(--accent);">Antonios Gasteratos</a></h3>
+                    <div class="org-affiliation">Democritus University of Thrace, Greece</div>
+                    <div class="org-email">Email: agaster@pme.duth.gr</div>
+                    <p class="org-bio">Prof. Antonios Gasteratos (FIET) is a Full Professor of Robotics, Mechatronics and Computer Vision at Democritus University of Thrace, Deputy Head of the Department of Production and Management Engineering and Director of the Laboratory of Robotics and Automation. He holds a MEng. and a PhD in Electrical and Computer Engineering, Democritus University of Thrace (1994 and 1999, respectively). During the past 15 years he has been principal investigator to several projects funded mostly by the European Commission, the European Space Agency, the Greek Secretariat for Research and Technology, Industry and other sources, which were mostly related to robotics and vision. He has published over 200 papers in peer reviewed journals and international conferences and written 3 textbooks in Greek. He is Subject Editor-in-Chief in Electronics Letters and Assoc. Editor at the Expert Systems with Applications, International Journal of Optomechatronics, International Journal of Advanced Robotics Systems. He is also evaluator of projects supported by the European Commission and other funding agencies, as well as reviewer in many international journals in the field of Computer Vision and Robotics. Antonios Gasteratos has been a member of programme committees of international conferences and chairman and co-chairman of international conferences and workshops.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <p style="text-align: center; margin-bottom: 40px; color: var(--text-light); font-style: italic;">
+        If you have any questions, feel free to contact Shan An (<a href="mailto:anshan@tju.edu.cn" style="border-bottom: 1px solid var(--accent);">anshan@tju.edu.cn</a>)
+    </p>
 </div>
 
-
-</div>
-<!-- .site-wrap -->
-
-
-<!-- loader -->
-<div id="loader" class="show fullscreen">
-    <svg class="circular" width="48px" height="48px">
-        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
-        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#ff5e15"/>
-    </svg>
-</div>
-
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/jquery.countdown.min.js"></script>
-<script src="js/bootstrap-datepicker.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/jquery.fancybox.min.js"></script>
-<script src="js/jquery.sticky.js"></script>
-<script src="js/jquery.mb.YTPlayer.min.js"></script>
-
-
-<script src="js/main.js"></script>
+<footer>
+    &copy; 2026 3DMM Workshop.
+</footer>
 
 </body>
-
 </html>
